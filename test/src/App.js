@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import uniqid from "uniqid";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import './style.css';
 
 class App extends Component {
   constructor() {
