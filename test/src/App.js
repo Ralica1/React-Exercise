@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Overview from "./components/Overview";
 import uniqid from "uniqid";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 class App extends Component {
   constructor() {
@@ -35,6 +36,12 @@ class App extends Component {
     });
   };
 
+  handleDelete = (id) => {
+    this.setState({
+      tasks: this.state.tasks.filter(task => task.id !== id)
+    });
+  };
+
   render() {
     const { task, tasks } = this.state;
 
@@ -50,7 +57,16 @@ class App extends Component {
           />
           <button type="submit">Add Task</button>
         </form>
-        <Overview tasks={tasks} />
+        <ul>
+          {tasks.map((task, index) => (
+            <li key={task.id}>
+              {index + 1}. {task.text} 
+              <button onClick={() => this.handleDelete(task.id)}>
+                <FontAwesomeIcon icon={faTrashAlt} />
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }
